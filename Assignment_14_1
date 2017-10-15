@@ -1,0 +1,120 @@
+Q. 1. What is the difference between Internal Storage & External Storage?
+Ans : Android provides several options for you to save persistent application data. The solution you choose depends on your specific needs, such as whether the data should be private to your application or accessible to other applications (and the user) and how much space your data requires.
+
+Internal storage :
+
+You can save files directly on the device's internal storage. By default, files saved to the internal storage are private to your application and other applications cannot access them (nor can the user). When the user uninstalls your application, these files are removed.
+
+To create and write a private file to the internal storage:
+
+Call openFileOutput() with the name of the file and the operating mode. This returns a FileOutputStream.
+Write to the file with write().
+Close the stream with close().
+For example:
+
+		String FILENAME = "hello_file";
+		String string = "hello world!";
+
+		FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+		fos.write(string.getBytes());
+		fos.close();
+		
+External Storage :
+
+Every Android-compatible device supports a shared "external storage" that you can use to save files. This can be a removable storage media (such as an SD card) or an internal (non-removable) storage. Files saved to the external storage are world-readable and can be modified by the user when they enable USB mass storage to transfer files on a computer.
+
+Getting access to external storage
+In order to read or write files on the external storage, your app must acquire the READ_EXTERNAL_STORAGE or WRITE_EXTERNAL_STORAGE system permissions.
+
+For example:
+
+<manifest ...>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    ...
+</manifest>
+
+If you need to both read and write files, then you need to request only the WRITE_EXTERNAL_STORAGE permission, because it implicitly requires read access as well.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+Q. 2. For how long the data resides in the cache?
+
+Ans. The Cache Data resides till the user uninstalls the application or explicitly deletes the cache.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+Q. 3. What are the critical Permissions and Normal Permissions? What are the examples of each?
+
+Ans. Permissions are special privileges that apps must ask for if they want to access sensitive media on your phone.
+
+critical Permissions : 
+
+Dangerous (critical) permissions cover areas where the app wants data or resources that involve the user's private information, or could potentially affect the user's stored data or the operation of other apps. For example, the ability to read the user's contacts is a dangerous permission. If an app declares that it needs a dangerous permission, the user has to explicitly grant the permission to the app.
+
+Examples of Critical Permissions :
+
+READ_CALENDAR
+WRITE_CALENDAR
+CAMERA
+READ_CONTACTS
+WRITE_CONTACTS
+GET_ACCOUNTS
+ACCESS_FINE_LOCATION
+ACCESS_COARSE_LOCATION
+RECORD_AUDIO
+READ_PHONE_STATE
+CALL_PHONE
+READ_CALL_LOG
+WRITE_CALL_LOG
+ADD_VOICEMAIL
+USE_SIP
+PROCESS_OUTGOING_CALLS
+BODY_SENSORS
+SEND_SMS
+RECEIVE_SMS
+READ_SMS
+RECEIVE_WAP_PUSH
+RECEIVE_MMS
+READ_EXTERNAL_STORAGE
+WRITE_EXTERNAL_STORAGE
+
+Normal Permissions :
+
+Normal permissions cover areas where your app needs to access data or resources outside the app's sandbox, but where there's very little risk to the user's privacy or the operation of other apps. For example, permission to set the time zone is a normal permission. If an app declares that it needs a normal permission, the system automatically grants the permission to the app. 
+
+Examples of Normal Permissions :
+
+ACCESS_LOCATION_EXTRA_COMMANDS
+ACCESS_NETWORK_STATE
+ACCESS_NOTIFICATION_POLICY
+ACCESS_WIFI_STATE
+BLUETOOTH
+BLUETOOTH_ADMIN
+BROADCAST_STICKY
+CHANGE_NETWORK_STATE
+CHANGE_WIFI_MULTICAST_STATE
+CHANGE_WIFI_STATE
+DISABLE_KEYGUARD
+EXPAND_STATUS_BAR
+GET_PACKAGE_SIZE
+INSTALL_SHORTCUT
+INTERNET
+KILL_BACKGROUND_PROCESSES
+MODIFY_AUDIO_SETTINGS
+NFC
+READ_SYNC_SETTINGS
+READ_SYNC_STATS
+RECEIVE_BOOT_COMPLETED
+REORDER_TASKS
+REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
+REQUEST_INSTALL_PACKAGES
+SET_ALARM
+SET_TIME_ZONE
+SET_WALLPAPER
+SET_WALLPAPER_HINTS
+TRANSMIT_IR
+UNINSTALL_SHORTCUT
+USE_FINGERPRINT
+VIBRATE
+WAKE_LOCK
+WRITE_SYNC_SETTINGS
